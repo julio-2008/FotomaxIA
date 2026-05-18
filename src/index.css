@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  
+  /* Brand System: Black / Yellow / Editorial Zinc */
+  --color-brand-yellow: #facc15;
+  --color-brand-black: #000000;
+  --color-brand-zinc: #09090b;
+  
+  /* Glassmorphism primitives */
+  --color-glass-border: rgba(255, 255, 255, 0.08);
+  --color-glass-bg: rgba(255, 255, 255, 0.03);
+  
+  /* Grid & Animation */
+  --animate-fade-in: fade-in 0.6s cubic-bezier(0.2, 0, 0, 1);
+  --animate-reveal: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-slide-right: slide-right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --timing-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slide-right {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+  --primary: #facc15;
+  --primary-foreground: #000000;
+  --card: #050505;
+  --border: #121212;
+}
+
+@layer utilities {
+  .liquid-glass {
+    @apply bg-white/[0.02] backdrop-blur-3xl border border-white/5;
+    box-shadow: 0 4px 64px 0 rgba(0, 0, 0, 0.4);
+  }
+  
+  .bento-grid {
+    @apply grid gap-[1px] bg-white/5 border border-white/5;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 15px rgba(250, 204, 21, 0.3);
+  }
+
+  .ease-editorial {
+    transition-timing-function: var(--timing-editorial);
+  }
+
+  .custom-scrollbar-sidebar::-webkit-scrollbar {
+    width: 2px;
+  }
+  
+  .custom-scrollbar-sidebar::-webkit-scrollbar-thumb {
+    @apply bg-zinc-900;
+  }
+
+  .custom-scrollbar-sidebar::-webkit-scrollbar-thumb:hover {
+    @apply bg-brand-yellow/20;
+  }
+  
+  .skeleton {
+    @apply bg-zinc-900/50 relative overflow-hidden;
+  }
+  
+  .skeleton::after {
+    content: "";
+    @apply absolute inset-0 -translate-x-full;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    animation: skeleton-shimmer 1.5s infinite;
+  }
+}
+
+@keyframes skeleton-shimmer {
+  100% { transform: translateX(100%); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes reveal {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+body {
+  @apply bg-black text-zinc-100 font-sans selection:bg-brand-yellow selection:text-black antialiased;
+  background-image: radial-gradient(circle at 50% 0%, rgba(250, 204, 21, 0.05) 0%, transparent 50%);
+}
+
+/* Swiss Grid Utility */
+.swiss-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+/* Editorial Typography */
+.text-editorial-h1 {
+  @apply font-display font-black uppercase italic tracking-tighter leading-[0.85];
+  font-size: clamp(2.5rem, 8vw, 6rem);
+}
+
+.text-editorial-h2 {
+  @apply font-display font-bold uppercase tracking-tighter leading-none;
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.text-editorial-h3 {
+  @apply font-display font-black uppercase tracking-tighter leading-tight;
+  font-size: clamp(1.5rem, 4vw, 2.75rem);
+}
+
+.text-editorial-label {
+  @apply font-display font-black uppercase tracking-[0.2em] md:tracking-[0.3em] text-[10px];
+}
+
+.brand-button {
+  @apply bg-brand-yellow text-black px-6 py-4 md:px-8 md:py-5 min-h-[54px] font-black uppercase tracking-widest hover:bg-white hover:scale-[1.02] transition-all active:scale-[0.98] inline-flex items-center justify-center gap-3 cursor-pointer text-xs md:text-sm;
+}
+
+.brand-button-outline {
+  @apply border-2 border-white/20 bg-transparent text-white px-6 py-4 md:px-8 md:py-5 min-h-[54px] font-black uppercase tracking-widest hover:bg-white hover:text-black hover:scale-[1.02] transition-all active:scale-[0.98] inline-flex items-center justify-center gap-3 cursor-pointer text-xs md:text-sm;
+}
+
+.swiss-card {
+  @apply bg-zinc-950 border border-white/5 rounded-none p-10 hover:border-brand-yellow/30 transition-all relative overflow-hidden;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-800 hover:bg-brand-yellow transition-colors;
+}
+

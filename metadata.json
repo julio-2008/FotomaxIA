@@ -1,0 +1,8 @@
+{
+  "name": "Fotomax Comercial AI",
+  "description": "Central de vendas com IA para pequenos negócios criarem campanhas, ofertas e mensagens de WhatsApp.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

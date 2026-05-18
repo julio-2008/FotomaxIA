@@ -1,11 +1,24 @@
-<div align="center">
+# CampanhaPronta AI
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+Gerador de campanhas de venda de alta conversão para pequenos negócios locais.
 
-  <h1>Built with AI Studio</h2>
+## Stack Técnica
+- **Frontend**: React 19 + Tailwind CSS + Motion
+- **Roteamento**: React Router Dom
+- **Backend**: Express (Proxy para Gemini API)
+- **IA**: Google Gemini 1.5 Flash (opcional) / Local Template Generator (fallback)
+- **Persistência**: LocalStorage (Demo Mode) / Estrutura pronta para Supabase
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## Como Rodar Localmente
+1. Instale as dependências: `npm install`
+2. Configure o `.env` (opcional): Adicione `GEMINI_API_KEY`
+3. Inicie o servidor de desenvolvimento: `npm run dev`
+4. Acesse: `http://localhost:3000`
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## Modo Demo vs Produção
+- **Demo**: Funciona totalmente via LocalStorage e templates inteligentes pré-definidos.
+- **Produção**: Requer `GEMINI_API_KEY` para geração dinâmica e Banco de Dados (Supabase) para persistência em nuvem.
 
-</div>
+## Deploy
+Este app está configurado para deploy em plataformas como Vercel, Netlify ou Cloud Run.
+O script `npm run build` gera os estáticos e o `npm start` inicia o servidor Express servindo esses estáticos.
